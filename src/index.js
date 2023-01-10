@@ -38,15 +38,11 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    let arrNum = [];
-    let arrResult = [];
+    let result = [];
     for (let i=0; i <= expr.length-1; i+=10) {
-    arrNum.push(expr.slice(i, i+10).replace(/11/g, '-').replace(/10/g, '.'));
+        result.push(expr.slice(i, i+10).replace(/11/g, '-').replace(/10/g, '.').replace(/0/g,''));
     }
-    arrNum.forEach(item => {
-        arrResult.push(item.replace(/0/g,''));
-    })
-    const word = arrResult.map(item => {
+    const word = result.map(item => {
     for (let prop in MORSE_TABLE) {
         if (item === "**********") {
             return " ";
